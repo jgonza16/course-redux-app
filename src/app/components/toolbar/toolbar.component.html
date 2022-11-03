@@ -2,6 +2,7 @@
   <span>Redux App - {{ userName }}</span>
   <span class="example-spacer"></span>
   <button
+    (click)="onFavClick.emit()"
     mat-icon-button
     class="example-icon favorite-icon"
     aria-label="Example icon-button with heart icon"
@@ -14,7 +15,7 @@
     >
   </button>
   <button
-    (click)="exit.emit()"
+    (click)="onExitClick.emit()"
     mat-icon-button
     class="example-icon"
     aria-label="Example icon-button with share icon"

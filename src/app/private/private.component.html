@@ -1,2 +1,9 @@
-<app-toolbar favNumber="12" userName="Javier"></app-toolbar>
-<router-outlet></router-outlet>
+<app-toolbar
+  (onExitClick)="logout()"
+  (onFavClick)="goFav()"
+  favNumber="12"
+  userName="Javier"
+></app-toolbar>
+<main class="container">
+  <router-outlet></router-outlet>
+</main>

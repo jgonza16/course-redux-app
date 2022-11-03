@@ -1,4 +1,13 @@
-<h1>Su ultimo Usuario seleccionado</h1>
-<app-user-item></app-user-item>
-<h1>Seleccionar usuario</h1>
-<app-user-item></app-user-item>
+<div class="container">
+  <h1>Su ultimo Usuario seleccionado</h1>
+  <div class="items-panel">
+    <app-user-item (click)="select()"></app-user-item>
+  </div>
+  <h1>Seleccionar usuario</h1>
+  <div class="items-panel">
+    <app-user-item (click)="select()"></app-user-item>
+    <app-user-item (click)="select()"></app-user-item>
+    <app-user-item (click)="select()"></app-user-item>
+    <app-user-item (click)="select()"></app-user-item>
+  </div>
+</div>

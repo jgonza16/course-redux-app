@@ -1,4 +1,4 @@
-import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -22,7 +22,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 export class ToolbarComponent implements OnInit {
   @Input() userName = '';
   @Input() favNumber = '';
-  @Output() exit = new EventEmitter<void>();
+  @Output() onExitClick = new EventEmitter<void>();
+  @Output() onFavClick = new EventEmitter<void>();
 
   constructor() {}
 
