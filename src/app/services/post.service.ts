@@ -17,8 +17,12 @@ export class PostService {
     return this.http.get<PostDTO[]>(`${BASE_URL}/posts`, { params });
   }
 
+  getCommmentdByPost(idPost: number): Observable<PostDTO[]> {
+    return this.http.get<PostDTO[]>(`${BASE_URL}/posts/${idPost}/comments`);
+  }
+
   createPost(body: NewPost): Observable<PostDTO> {
-    return this.http.put<PostDTO>(`${BASE_URL}/posts`, body);
+    return this.http.post<PostDTO>(`${BASE_URL}/posts`, body);
   }
 
   updatePost(body: PostDTO): Observable<PostDTO> {

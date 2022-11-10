@@ -29,4 +29,9 @@ export class PostsListComponent implements OnInit {
       });
     this.posts$ = this.store.select(FromPostReducer.selectPosts);
   }
+
+  addPost(): void {
+    this.store.dispatch(PostActions.setReadOnly({ readonly: false }));
+    this.store.dispatch(PostActions.setIsNew({ isNew: true }));
+  }
 }

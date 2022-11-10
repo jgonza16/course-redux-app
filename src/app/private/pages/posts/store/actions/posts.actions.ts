@@ -18,17 +18,17 @@ export const newPost = createAction(
 
 export const newPostSuccess = createAction(
   '[POSTS] New Post Success',
-  props<{ post: NewPost }>()
+  props<{ post: PostDTO }>()
 );
 
 export const updatePost = createAction(
   '[POSTS] Update Post',
-  props<{ post: Post }>()
+  props<{ post: PostDTO }>()
 );
 
 export const updatePostSuccess = createAction(
   '[POSTS] Update Post Success',
-  props<{ post: Post }>()
+  props<{ post: PostDTO }>()
 );
 
 export const deletePost = createAction(
@@ -44,6 +44,21 @@ export const deletePostSuccess = createAction(
 export const setFavPost = createAction(
   '[POSTS] Set fav post',
   props<{ post: Post }>()
+);
+
+export const setSelectedPost = createAction(
+  '[POSTS] Set Selected post',
+  props<{ postSelected: Post | null }>()
+);
+
+export const setReadOnly = createAction(
+  '[POSTS] Set readOnly post',
+  props<{ readonly: boolean }>()
+);
+
+export const setIsNew = createAction(
+  '[POSTS] Set isNew post',
+  props<{ isNew: boolean }>()
 );
 
 export const setError = createAction(

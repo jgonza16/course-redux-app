@@ -3,5 +3,7 @@
 </button>
 <mat-tab-group mat-align-tabs="center">
   <mat-tab label="Info"><app-post-info></app-post-info></mat-tab>
-  <mat-tab label="Comments"><app-post-comments></app-post-comments></mat-tab>
+  <mat-tab *ngIf="!(isNew$ | async)" label="Comments"
+    ><app-post-comments></app-post-comments
+  ></mat-tab>
 </mat-tab-group>

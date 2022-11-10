@@ -16,11 +16,17 @@ export class PostItemComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  show(): void {
+  show(postSelected: Post): void {
+    this.store.dispatch(PostActions.setReadOnly({ readonly: true }));
+    this.store.dispatch(PostActions.setIsNew({ isNew: false }));
+    this.store.dispatch(PostActions.setSelectedPost({ postSelected }));
     this.router.navigateByUrl('/posts/post-detail');
   }
 
-  edit(): void {
+  edit(postSelected: Post): void {
+    this.store.dispatch(PostActions.setReadOnly({ readonly: false }));
+    this.store.dispatch(PostActions.setIsNew({ isNew: false }));
+    this.store.dispatch(PostActions.setSelectedPost({ postSelected }));
     this.router.navigateByUrl('/posts/post-detail');
   }
 

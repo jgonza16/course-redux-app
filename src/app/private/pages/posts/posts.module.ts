@@ -21,6 +21,7 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
 import { postFeature } from './store/reducers/posts.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PostEffects } from './store/effects/posts.effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,8 @@ import { PostEffects } from './store/effects/posts.effects';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     PostsRoutingModule,
     MatCardModule,
     MatButtonModule,

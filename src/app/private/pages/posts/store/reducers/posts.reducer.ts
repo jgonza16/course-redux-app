@@ -2,16 +2,20 @@ import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { Post } from 'src/app/interfaces/posts.interface';
 import * as PostActions from '../actions/posts.actions';
 
-interface State {
+export interface State {
   posts: Post[];
+  readonly: boolean;
   isNew: boolean;
+  postSelected: Post | null;
   favPosts: Post[];
   error: any;
 }
 
 const initialState: State = {
   posts: [],
-  isNew: true,
+  readonly: true,
+  isNew: false,
+  postSelected: null,
   favPosts: [],
   error: null,
 };
@@ -57,6 +61,34 @@ export const postFeature = createFeature({
         favPosts,
       };
     }),
+    on(PostActions.newPostSuccess, (state, { post }) => ({
+      ...state,
+      posts: [...state.posts, { ...post, fav: false }],
+    })),
+    on(PostActions.updatePostSuccess, (state, { post }) => ({
+      ...state,
+      posts: state.posts.map((item) => {
+        if (item.id === post.id) {
+          return {
+            ...item,
+            ...post,
+          };
+        }
+        return item;
+      }),
+    })),
+    on(PostActions.setSelectedPost, (state, { postSelected }) => ({
+      ...state,
+      postSelected,
+    })),
+    on(PostActions.setReadOnly, (state, { readonly }) => ({
+      ...state,
+      readonly,
+    })),
+    on(PostActions.setIsNew, (state, { isNew }) => ({
+      ...state,
+      isNew,
+    })),
     on(PostActions.setError, (state, { payload }) => ({
       ...state,
       error: payload,
@@ -69,6 +101,8 @@ export const {
   reducer,
   selectFavPosts,
   selectPosts,
+  selectPostSelected,
+  selectReadonly,
   selectIsNew,
   selectPostsState,
 } = postFeature;

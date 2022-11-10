@@ -1,18 +1,41 @@
-<form>
-  <mat-form-field appearance="fill">
-    <mat-label>Title</mat-label>
-    <input matInput placeholder="Title" [readonly]="false" />
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label>Body</mat-label>
-    <textarea
-      type=""
-      matInput
-      placeholder="xxxxxxx"
-      [readonly]="false"
-    ></textarea>
-  </mat-form-field>
-  <div class="btn-panel">
-    <button mat-raised-button color="primary">Save</button>
-  </div>
-</form>
+<ng-container *ngIf="dataPost$ | async as dataPost">
+  <h2>
+    {{
+      dataPost.isNew
+        ? "New Post"
+        : dataPost.readonly
+        ? "Show Post"
+        : "Edit Post"
+    }}
+  </h2>
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input
+        formControlName="title"
+        [readonly]="dataPost.readonly"
+        matInput
+        placeholder="Title"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Body</mat-label>
+      <textarea
+        [readonly]="dataPost.readonly"
+        formControlName="body"
+        matInput
+        placeholder="xxxxxxx"
+      ></textarea>
+    </mat-form-field>
+    <div class="btn-panel">
+      <button
+        [disabled]="form.invalid"
+        mat-raised-button
+        color="primary"
+        (click)="save()"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</ng-container>
