@@ -1,7 +1,6 @@
 <h1>Listado Posts</h1>
-<div class="items-panel">
-  <app-post-item></app-post-item>
-  <app-post-item></app-post-item>
-  <app-post-item></app-post-item>
-  <app-post-item></app-post-item>
+<div class="items-panel" *ngIf="posts$ | async as posts">
+  <ng-container *ngFor="let post of posts">
+    <app-post-item [post]="post"></app-post-item>
+  </ng-container>
 </div>
