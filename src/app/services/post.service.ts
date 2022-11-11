@@ -17,8 +17,8 @@ export class PostService {
     return this.http.get<PostDTO[]>(`${BASE_URL}/posts`, { params });
   }
 
-  getCommmentdByPost(idPost: number): Observable<PostDTO[]> {
-    return this.http.get<PostDTO[]>(`${BASE_URL}/posts/${idPost}/comments`);
+  getCommmentdByPost(idPost: number): Observable<any[]> {
+    return this.http.get<any[]>(`${BASE_URL}/posts/${idPost}/comments`);
   }
 
   createPost(body: NewPost): Observable<PostDTO> {

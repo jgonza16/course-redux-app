@@ -2,17 +2,24 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, switchMap, tap, filter, take } from 'rxjs/operators';
+import { catchError, filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { PostService } from '../../../../../services/post.service';
 import * as PostActions from '../actions/posts.actions';
-import { newPost } from '../actions/posts.actions';
 
+const CACHE_TIME = 60000;
 @Injectable()
 export class PostEffects {
+  lastRequest = 0;
+
   loadPosts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(PostActions.loadPosts),
-      take(1),
+      filter(() => !this.isChacheValid(this.lastRequest, CACHE_TIME)),
+      tap(() => {
+        console.log('tap');
+
+        this.lastRequest = new Date().getTime();
+      }),
       switchMap(({ userId }) =>
         this.service.getPostsByUser(userId).pipe(
           map((postsDB) => PostActions.loadPostsSuccess({ postsDB })),
@@ -79,5 +86,11 @@ export class PostEffects {
   handleError(err: any) {
     console.warn(err);
     return of(PostActions.setError({ payload: err }));
+  }
+
+  isChacheValid(lastRequest: number, cacheTime: number): boolean {
+    const now = new Date();
+    const timeAllowed = new Date(lastRequest + cacheTime);
+    return !!lastRequest && now.getTime() < timeAllowed.getTime();
   }
 }
