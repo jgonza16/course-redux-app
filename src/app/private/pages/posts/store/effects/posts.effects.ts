@@ -15,11 +15,7 @@ export class PostEffects {
     this.actions$.pipe(
       ofType(PostActions.loadPosts),
       filter(() => !this.isChacheValid(this.lastRequest, CACHE_TIME)),
-      tap(() => {
-        console.log('tap');
-
-        this.lastRequest = new Date().getTime();
-      }),
+      tap(() => (this.lastRequest = new Date().getTime())),
       switchMap(({ userId }) =>
         this.service.getPostsByUser(userId).pipe(
           map((postsDB) => PostActions.loadPostsSuccess({ postsDB })),
