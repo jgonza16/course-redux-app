@@ -1,6 +1,25 @@
 # CourseReduxApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.4.
+App curso de gestion de estado con patron redux
+
+## Stack Necesario
+
+[CLI Angular](https://github.com/angular/angular-cli) version 14.2.4.
+
+[UI Angular Material](https://material.angular.io/) version 14.x.x.
+
+[STATE NgRx](https://ngrx.io/) version 14.x.x.
+
+[REDUX DEVTOOLS](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en).
+
+[API NgRx](https://jsonplaceholder.typicode.com/).
+
+## Curso/Branch-Info
+Usar dos ramas para seguir el curso. Se clonará el [proyecto -publico](https://github.com/jgonza16/course-redux-app), y se trabajará en una rama local para el seguimiento pudiendo comparar con las ramas mencionadas.
+### feature/init-course 
+Rama con el estado inicial del proyecto clase 1 del curso (NO HACER PUSH)
+### feature/course-process
+Rama con el ultimo estado del curso en proceso(NO HACER PUSH)
 
 ## Development server
 
