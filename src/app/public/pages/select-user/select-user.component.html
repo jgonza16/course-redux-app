@@ -1,13 +1,18 @@
 <div class="container">
-  <h1>Su ultimo Usuario seleccionado</h1>
-  <div class="items-panel">
-    <app-user-item (click)="select()"></app-user-item>
-  </div>
+  <ng-container *ngIf="lastUser$ | async as lastUser">
+    <h1>Su ultimo Usuario seleccionado</h1>
+    <div class="items-panel">
+      <app-user-item
+        [user]="lastUser"
+        (click)="select(lastUser)"
+      ></app-user-item>
+    </div>
+  </ng-container>
+
   <h1>Seleccionar usuario</h1>
-  <div class="items-panel">
-    <app-user-item (click)="select()"></app-user-item>
-    <app-user-item (click)="select()"></app-user-item>
-    <app-user-item (click)="select()"></app-user-item>
-    <app-user-item (click)="select()"></app-user-item>
+  <div class="items-panel" *ngIf="users$ | async as users">
+    <ng-container *ngFor="let user of users">
+      <app-user-item [user]="user" (click)="select(user)"></app-user-item>
+    </ng-container>
   </div>
 </div>

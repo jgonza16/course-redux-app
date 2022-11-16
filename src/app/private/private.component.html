@@ -2,7 +2,7 @@
   (onExitClick)="logout()"
   (onFavClick)="goFav()"
   favNumber="12"
-  userName="Javier"
+  [userName]="(user$ | async)?.username ?? ''"
 ></app-toolbar>
 <main class="container">
   <router-outlet></router-outlet>
