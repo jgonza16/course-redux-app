@@ -1,5 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { Post } from 'src/app/interfaces/post.interface';
+import { AppState } from 'src/app/store/reducers/app.reducers';
+import * as PostsActions from '../../store/actions/posts.actions';
 
 @Component({
   selector: 'app-post-item',
@@ -7,8 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./post-item.component.scss'],
 })
 export class PostItemComponent implements OnInit {
-  @Input() post: any = {};
-  constructor(private router: Router) {}
+  @Input() post!: Post;
+  constructor(private router: Router, private store: Store<AppState>) {}
 
   ngOnInit(): void {}
 
@@ -24,7 +28,8 @@ export class PostItemComponent implements OnInit {
     console.log('Drop');
   }
 
-  favChange(): void {
+  favChange(post: Post): void {
+    this.store.dispatch(PostsActions.setFavPost({ post }));
     console.log('change fav');
   }
 }

@@ -1,11 +1,11 @@
 <mat-card class="post-card">
-  <mat-card-title>{{ "Title" }}</mat-card-title>
+  <mat-card-title>{{ post.title }}</mat-card-title>
   <mat-card-actions>
     <button (click)="show()" mat-button>Ver</button>
     <button (click)="edit()" mat-button>Editar</button>
     <button (click)="drop()" mat-button>Borrar</button>
-    <button (click)="favChange()" mat-button>
-      <mat-icon [color]="true ? 'warn' : ''">favorite</mat-icon>
+    <button (click)="favChange(post)" mat-button>
+      <mat-icon [color]="post.fav ? 'warn' : ''">favorite</mat-icon>
     </button>
   </mat-card-actions>
 </mat-card>

@@ -17,6 +17,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CommentItemComponent } from './components/comment-item/comment-item.component';
+import { StoreModule } from '@ngrx/store';
+import { booksFeature } from './store/reducers/posts.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { PostsEffects } from './store/effects/posts.effects';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,8 @@ import { CommentItemComponent } from './components/comment-item/comment-item.com
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    StoreModule.forFeature(booksFeature),
+    EffectsModule.forFeature([PostsEffects]),
   ],
 })
 export class PostsModule {}
