@@ -6,6 +6,7 @@ import { catchError, filter, map, switchMap, take, tap } from 'rxjs/operators';
 import { PostsService } from 'src/app/services/posts.service';
 import { UserService } from 'src/app/services/user.service';
 import * as PostActions from '../actions/posts.actions';
+import { newPost } from '../actions/posts.actions';
 
 const CACHE_TIME = 60000;
 
@@ -21,6 +22,42 @@ export class PostsEffects {
       switchMap(({ userId }) =>
         this.service.getPostsByUser(userId).pipe(
           map((postsDb) => PostActions.loadPostSuccess({ postsDb })),
+          catchError((e) => this.handleError(e))
+        )
+      )
+    )
+  );
+
+  deletePosts$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PostActions.deletePost),
+      switchMap(({ id }) =>
+        this.service.deletePost(id).pipe(
+          map(() => PostActions.deletePostSuccess({ id })),
+          catchError((e) => this.handleError(e))
+        )
+      )
+    )
+  );
+
+  newPosts$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PostActions.newPost),
+      switchMap(({ post }) =>
+        this.service.createPost(post).pipe(
+          map((post) => PostActions.newPostSuccess({ post })),
+          catchError((e) => this.handleError(e))
+        )
+      )
+    )
+  );
+
+  updatePosts$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PostActions.updatePost),
+      switchMap(({ post }) =>
+        this.service.updatePost(post).pipe(
+          map((post) => PostActions.updatePostSuccess({ post })),
           catchError((e) => this.handleError(e))
         )
       )

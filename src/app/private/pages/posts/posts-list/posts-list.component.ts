@@ -7,6 +7,8 @@ import { take, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/interfaces/post.interface';
 import * as FromPostsReducer from '../store/reducers/posts.reducer';
+import * as UserActions from '../../../../store/actions/user.actions';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './posts-list.component.html',
@@ -14,7 +16,7 @@ import * as FromPostsReducer from '../store/reducers/posts.reducer';
 })
 export class PostsListComponent implements OnInit {
   posts$!: Observable<Post[]>;
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit(): void {
     this.store
@@ -29,5 +31,10 @@ export class PostsListComponent implements OnInit {
         },
       });
     this.posts$ = this.store.select(FromPostsReducer.selectPosts);
+  }
+
+  newPost(): void {
+    this.store.dispatch(PostsActions.setPostSelected({ postSelected: null }));
+    this.router.navigateByUrl('/posts/post-detail');
   }
 }

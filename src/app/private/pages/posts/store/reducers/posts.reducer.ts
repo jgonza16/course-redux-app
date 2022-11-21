@@ -1,4 +1,4 @@
-import { createFeature, createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, createSelector, on } from '@ngrx/store';
 import { Post } from 'src/app/interfaces/post.interface';
 import * as PostsActions from '../actions/posts.actions';
 
@@ -30,7 +30,6 @@ export const booksFeature = createFeature({
       }));
       return {
         ...state,
-        loading: true,
         posts,
       };
     }),
@@ -48,11 +47,43 @@ export const booksFeature = createFeature({
 
       return {
         ...state,
-        loading: true,
         favPost,
         posts,
       };
-    })
+    }),
+    on(PostsActions.deletePostSuccess, (state, { id }) => {
+      const posts = state.posts.filter((post) => post.id !== id);
+      const favPost = state.favPost.filter((post) => post.id !== id);
+      return {
+        ...state,
+        posts,
+        favPost,
+      };
+    }),
+    on(PostsActions.newPostSuccess, (state, { post }) => ({
+      ...state,
+      posts: [...state.posts, { ...post, fav: false }],
+    })),
+    on(PostsActions.setPostSelected, (state, { postSelected }) => ({
+      ...state,
+      postSelected,
+    })),
+    on(PostsActions.setReadonly, (state, { readonly }) => ({
+      ...state,
+      readonly,
+    })),
+    on(PostsActions.updatePostSuccess, (state, { post }) => ({
+      ...state,
+      posts: state.posts.map((item) => {
+        if (item.id === post.id) {
+          return {
+            ...item,
+            ...post,
+          };
+        }
+        return item;
+      }),
+    }))
   ),
 });
 
@@ -66,3 +97,7 @@ export const {
   selectFavPost,
   selectPostSelected,
 } = booksFeature;
+
+export const numbersFavsSelector = createSelector(selectFavPost, (posts) =>
+  posts.length ? posts.length.toString() : ''
+);

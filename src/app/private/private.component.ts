@@ -6,6 +6,7 @@ import { User } from '../interfaces/user.interface';
 import * as UserActions from '../store/actions/user.actions';
 import { AppState } from '../store/reducers/app.reducers';
 import * as UserSelectors from '../store/selectors/users.selectors';
+import * as FromPostReducer from './pages/posts/store/reducers/posts.reducer';
 
 @Component({
   selector: 'app-private',
@@ -14,10 +15,12 @@ import * as UserSelectors from '../store/selectors/users.selectors';
 })
 export class PrivateComponent implements OnInit {
   user$!: Observable<User | null>;
+  numberFavs$!: Observable<string>;
   constructor(private router: Router, private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.user$ = this.store.select(UserSelectors.getUserSelected);
+    this.numberFavs$ = this.store.select(FromPostReducer.numbersFavsSelector);
   }
 
   logout(): void {
