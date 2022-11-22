@@ -28,4 +28,8 @@ export class PostsService {
   deletePost(id: number): Observable<{}> {
     return this.http.delete<{}>(`${BASE_URL}/posts/${id}`);
   }
+
+  getCommmentsByPost(idPost: number): Observable<any[]> {
+    return this.http.get<any[]>(`${BASE_URL}/posts/${idPost}/comments`);
+  }
 }

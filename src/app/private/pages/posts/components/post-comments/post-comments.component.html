@@ -1,5 +1,5 @@
-<div class="comments-panel">
-  <app-comment-item></app-comment-item>
-  <app-comment-item></app-comment-item>
-  <app-comment-item></app-comment-item>
+<div class="comments-panel" *ngIf="comments$ | async as comments">
+  <ng-container *ngFor="let comment of comments">
+    <app-comment-item [comment]="comment"></app-comment-item>
+  </ng-container>
 </div>

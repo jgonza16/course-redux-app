@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
-import { EffectsModule } from '@ngrx/effects';
-import { appReducers } from './store/reducers/app.reducers';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { appEffects } from './store/effects/app.effects';
-import { HttpClientModule } from '@angular/common/http';
+import { appReducers } from './store/reducers/app.reducers';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,8 +19,6 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule,
-    FormsModule,
     StoreModule.forRoot(appReducers, {}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

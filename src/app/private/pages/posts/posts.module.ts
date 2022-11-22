@@ -21,6 +21,7 @@ import { StoreModule } from '@ngrx/store';
 import { booksFeature } from './store/reducers/posts.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PostsEffects } from './store/effects/posts.effects';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,8 @@ import { PostsEffects } from './store/effects/posts.effects';
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
     PostsRoutingModule,
     MatCardModule,
     MatButtonModule,
