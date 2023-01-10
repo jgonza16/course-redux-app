@@ -1,0 +1,38 @@
+<ng-container *ngIf="dataPost$ | async as dataPost">
+  <h2>
+    {{
+      !dataPost.postSelected ? "Nuevo" : dataPost.readonly ? "Ver" : "Editar"
+    }}
+    Post
+  </h2>
+  <form [formGroup]="form">
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input
+        matInput
+        formControlName="title"
+        placeholder="Title"
+        [readonly]="dataPost.readonly"
+      />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Body</mat-label>
+      <textarea
+        formControlName="body"
+        matInput
+        placeholder="xxxxxxx"
+        [readonly]="dataPost.readonly"
+      ></textarea>
+    </mat-form-field>
+    <div *ngIf="!dataPost.readonly" class="btn-panel">
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="form.invalid"
+        (click)="save()"
+      >
+        Save
+      </button>
+    </div>
+  </form>
+</ng-container>

@@ -1,0 +1,25 @@
+<mat-toolbar color="primary">
+  <span>Redux App - {{ userName }}</span>
+  <span class="example-spacer"></span>
+  <button
+    (click)="onFavClick.emit()"
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+  >
+    <mat-icon
+      [matBadge]="favNumber"
+      matBadgePosition="before"
+      matBadgeColor="warn"
+      >favorite</mat-icon
+    >
+  </button>
+  <button
+    (click)="onExitClick.emit()"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon>exit_to_app</mat-icon>
+  </button>
+</mat-toolbar>

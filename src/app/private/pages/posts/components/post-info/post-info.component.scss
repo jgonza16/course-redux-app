@@ -1,0 +1,9 @@
+form {
+  margin-top: 12px;
+  display: flex;
+  flex-flow: column nowrap;
+  .btn-panel {
+    display: flex;
+    justify-content: flex-end;
+  }
+}

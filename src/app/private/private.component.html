@@ -1,0 +1,9 @@
+<app-toolbar
+  (onExitClick)="logout()"
+  (onFavClick)="goFav()"
+  [favNumber]="(numberFavs$ | async) ?? ''"
+  [userName]="(user$ | async)?.username ?? ''"
+></app-toolbar>
+<main class="container">
+  <router-outlet></router-outlet>
+</main>
