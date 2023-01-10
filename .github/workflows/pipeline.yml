@@ -16,6 +16,10 @@ jobs:
         with:
           node-version: 16
       - name: Install deps
-        run: npm install
+        run: npm install --no-audit --no-found --no-optional
       - name: Linter
         run: npm run lint
+      - name: Test
+        run: npm run test
+      - name: Build
+        run: npm run build
