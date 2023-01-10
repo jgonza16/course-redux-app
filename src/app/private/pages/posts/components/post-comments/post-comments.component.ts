@@ -7,9 +7,6 @@ import { Comment } from 'src/app/interfaces/comment';
   templateUrl: './post-comments.component.html',
   styleUrls: ['./post-comments.component.scss'],
 })
-export class PostCommentsComponent implements OnInit {
+export class PostCommentsComponent {
   comments$: Observable<Comment[]> = of([]);
-  constructor() {}
-
-  ngOnInit(): void {}
 }

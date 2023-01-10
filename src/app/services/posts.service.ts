@@ -25,11 +25,7 @@ export class PostsService {
     return this.http.put<PostDTO>(`${BASE_URL}/posts/${body.id}`, body);
   }
 
-  deletePost(id: number): Observable<{}> {
-    return this.http.delete<{}>(`${BASE_URL}/posts/${id}`);
-  }
-
-  getCommmentsByPost(idPost: number): Observable<any[]> {
-    return this.http.get<any[]>(`${BASE_URL}/posts/${idPost}/comments`);
+  deletePost(id: number): Observable<null> {
+    return this.http.delete<null>(`${BASE_URL}/posts/${id}`);
   }
 }

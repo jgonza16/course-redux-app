@@ -19,13 +19,9 @@ import { MatBadgeModule } from '@angular/material/badge';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
   @Input() userName = '';
   @Input() favNumber = '';
   @Output() onExitClick = new EventEmitter<void>();
   @Output() onFavClick = new EventEmitter<void>();
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

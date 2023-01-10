@@ -10,11 +10,9 @@ import * as PostsActions from '../../store/actions/posts.actions';
   templateUrl: './post-item.component.html',
   styleUrls: ['./post-item.component.scss'],
 })
-export class PostItemComponent implements OnInit {
+export class PostItemComponent {
   @Input() post!: Post;
   constructor(private router: Router, private store: Store<AppState>) {}
-
-  ngOnInit(): void {}
 
   show(postSelected: Post): void {
     this.store.dispatch(PostsActions.setPostSelected({ postSelected }));

@@ -6,6 +6,6 @@ export interface Post {
   fav: boolean;
 }
 
-export interface PostDTO extends Omit<Post, 'fav'> {}
+export type PostDTO = Omit<Post, 'fav'>;
 
-export interface NewPost extends Omit<Post, 'fav' | 'id'> {}
+export type NewPost = Omit<Post, 'fav' | 'id'>;

@@ -6,9 +6,6 @@ import { User } from 'src/app/interfaces/user.interface';
   templateUrl: './user-item.component.html',
   styleUrls: ['./user-item.component.scss'],
 })
-export class UserItemComponent implements OnInit {
+export class UserItemComponent {
   @Input() user!: User;
-  constructor() {}
-
-  ngOnInit(): void {}
 }

@@ -6,9 +6,6 @@ import { Comment } from 'src/app/interfaces/comment';
   templateUrl: './comment-item.component.html',
   styleUrls: ['./comment-item.component.scss'],
 })
-export class CommentItemComponent implements OnInit {
+export class CommentItemComponent {
   @Input() comment!: Comment;
-  constructor() {}
-
-  ngOnInit(): void {}
 }
